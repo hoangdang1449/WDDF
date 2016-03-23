@@ -1,0 +1,10 @@
+2016-03-23 15:57:58,187 - rootLogger - INFO - All Excel Files Initialised successfully.
+2016-03-23 15:57:58,191 - rootLogger - INFO - Execution started for SuiteOneBase.
+2016-03-23 15:57:58,260 - rootLogger - INFO - All Excel Files Initialised successfully.
+2016-03-23 15:57:58,261 - rootLogger - INFO - SuiteOneCaseOne : Execution started.
+2016-03-23 15:58:16,274 - rootLogger - INFO - SuiteOneCaseOne : Reporting test data set line 1 as PASS In excel.
+2016-03-23 15:58:16,285 - rootLogger - INFO - SuiteOneCaseOne : DataToRun = N for data set line 2 So skipping Its execution.
+2016-03-23 15:58:16,288 - rootLogger - INFO - SuiteOneCaseOne : Reporting test data set line 2 as SKIP In excel.
+2016-03-23 15:58:16,760 - rootLogger - INFO - SuiteOneCaseOne : Reporting test case as PASS In excel.
+2016-03-23 15:58:16,812 - rootLogger - INFO - All Excel Files Initialised successfully.
+2016-03-23 15:58:36,408 - rootLogger - INFO - All Excel Files Initialised successfully.
