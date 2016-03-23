@@ -5,8 +5,11 @@
     <classes>
       <class name="com.stta.SuiteOne.SuiteOneCaseOne">
         <methods>
+          <include name="reporterDataResults"/>
           <include name="checkCaseToRun"/>
-          <include name="SuiteOneCaseOneTest"/>
+          <include name="closeBrowser"/>
+          <include name="checkSuiteToRun"/>
+          <include name="SuiteOneCaseOneTest" invocation-numbers="0 1"/>
         </methods>
       </class> <!-- com.stta.SuiteOne.SuiteOneCaseOne -->
     </classes>
