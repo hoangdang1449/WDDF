@@ -1,3 +1,4 @@
+//Find More Tutorials On WebDriver at -> http://software-testing-tutorials-automation.blogspot.com
 package com.stta.SuiteTwo;
 
 import java.io.IOException;
@@ -74,12 +75,23 @@ public class SuiteTwoCaseTwo extends SuiteTwoBase{
 		//To Convert data from String to Integer
 		int ValueOne = Integer.parseInt(DataCol1);
 		int ValueTwo = Integer.parseInt(DataCol2);		
-		int ExpectedResultInt =  Integer.parseInt(ExpectedResult);
+		double ExpectedResultDouble =  Double.parseDouble(ExpectedResult);
 						
 		//To Initialize Firefox browser.
 		loadWebBrowser();
-		//To navigate to URL.
-		driver.get("http://only-testing-blog.blogspot.com");
+		
+		driver.get(Param.getProperty("siteURL")+"/2014/04/calc.html");		
+		getElementByName("txt_Result").clear();
+		getElementByXPath("btn_Calc_PrePart",ValueOne,"btn_Calc_PostPart").click();
+		getElementByID("btn_divide").click();
+		getElementByXPath("btn_Calc_PrePart",ValueTwo,"btn_Calc_PostPart").click();
+		getElementByCSS("btn_Equals").click();
+		String Result = getElementByName("txt_Result").getAttribute("value");
+		Double ActualResultDouble =  Double.parseDouble(Result);
+		if(!(ActualResultDouble==ExpectedResultDouble)){
+			Testfail=true;	
+			s_assert.assertEquals(ActualResultDouble, ExpectedResultDouble, "ActualResult Value "+ActualResultDouble+" And ExpectedResult Value "+ExpectedResultDouble+" Not Match");
+		}
 		
 		if(Testfail){
 			//At last, test data assertion failure will be reported In testNG reports and It will mark your test data, test case and test suite as fail.

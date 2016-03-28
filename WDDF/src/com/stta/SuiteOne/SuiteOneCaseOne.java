@@ -1,7 +1,8 @@
+//Find More Tutorials On WebDriver at -> http://software-testing-tutorials-automation.blogspot.com
 package com.stta.SuiteOne;
 
 import java.io.IOException;
-
+import org.openqa.selenium.By;
 import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -9,7 +10,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import com.stta.utility.Read_XLS;
 import com.stta.utility.SuiteUtility;
 
@@ -82,10 +82,44 @@ public class SuiteOneCaseOne extends SuiteOneBase{
 		int ExpectedResultInt =  Integer.parseInt(ExpectedResult);
 		
 		//To Initialize Firefox browser.
-		loadWebBrowser();
-		//To navigate to URL.
-		driver.get("http://only-testing-blog.blogspot.com");
+		loadWebBrowser();		
 		
+		//To navigate to URL. It will read site URL from Param.properties file
+		driver.get(Param.getProperty("siteURL")+"/2014/04/calc.html");		
+		
+		//Simple calc test.
+		
+		//Locate Element by Name Locator example.
+		getElementByName("txt_Result").clear();
+		
+		//Locate element by dynamic xPath example.
+		getElementByXPath("btn_Calc_PrePart",ValueOne,"btn_Calc_PostPart").click();
+		
+		//Locate Element by ID Locator example.
+		getElementByID("btn_Plus").click();
+		
+		getElementByXPath("btn_Calc_PrePart",ValueTwo,"btn_Calc_PostPart").click();
+		
+		getElementByID("btn_Plus").click();
+				
+		getElementByXPath("btn_Calc_PrePart",ValueThree,"btn_Calc_PostPart").click();
+		
+		//Locate Element by cssSelector Locator example.
+		getElementByCSS("btn_Equals").click();
+		
+		String Result = getElementByName("txt_Result").getAttribute("value");
+		
+		//To Convert data from String to Integer
+		int ActualResultInt =  Integer.parseInt(Result);
+		
+		//Compare actual and expected values.
+		if(!(ActualResultInt==ExpectedResultInt)){
+			//If expected and actual results not match, Set flag Testfail=true.
+			Testfail=true;	
+			//If result Is fail then test failure will be captured Inside s_assert object reference.
+			//This soft assertion will not stop your test execution.
+			s_assert.assertEquals(ActualResultInt, ExpectedResultInt, "ActualResult Value "+ActualResultInt+" And ExpectedResult Value "+ExpectedResultInt+" Not Match");
+		}
 		
 		if(Testfail){
 			//At last, test data assertion failure will be reported In testNG reports and It will mark your test data, test case and test suite as fail.

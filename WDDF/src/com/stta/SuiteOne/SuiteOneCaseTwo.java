@@ -1,3 +1,4 @@
+//Find More Tutorials On WebDriver at -> http://software-testing-tutorials-automation.blogspot.com
 package com.stta.SuiteOne;
 
 import java.io.IOException;
@@ -79,11 +80,23 @@ public class SuiteOneCaseTwo extends SuiteOneBase{
 				
 		//To Initialize Firefox browser.
 		loadWebBrowser();
-		//To navigate to URL.
-		driver.get("http://only-testing-blog.blogspot.com");
+		
+		driver.get(Param.getProperty("siteURL")+"/2014/04/calc.html");		
+		getElementByName("txt_Result").clear();
+		getElementByXPath("btn_Calc_PrePart",ValueOne,"btn_Calc_PostPart").click();
+		getElementByID("btn_Minus").click();
+		getElementByXPath("btn_Calc_PrePart",ValueTwo,"btn_Calc_PostPart").click();
+		getElementByID("btn_Minus").click();
+		getElementByXPath("btn_Calc_PrePart",ValueThree,"btn_Calc_PostPart").click();
+		getElementByCSS("btn_Equals").click();
+		String Result = getElementByName("txt_Result").getAttribute("value");
+		int ActualResultInt =  Integer.parseInt(Result);
+		if(!(ActualResultInt==ExpectedResultInt)){
+			Testfail=true;	
+			s_assert.assertEquals(ActualResultInt, ExpectedResultInt, "ActualResult Value "+ActualResultInt+" And ExpectedResult Value "+ExpectedResultInt+" Not Match");
+		}
 		
 		if(Testfail){
-			//At last, test data assertion failure will be reported In testNG reports and It will mark your test data, test case and test suite as fail.
 			s_assert.assertAll();		
 		}			
 	}	
